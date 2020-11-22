@@ -40,6 +40,13 @@ class UserModel {
         "imagem": imagem == null ? null : imagem,
       };
 
+  Map<String, dynamic> toJsonWithoutPass() => {
+        "nome": nome == null ? null : nome,
+        "email": email == null ? null : email,
+        "aniversario": aniversario == null ? null : aniversario,
+        "senha": senha == null ? null : senha,
+        "imagem": imagem == null ? null : imagem,
+      };
   Map<String, dynamic> toJsonWithoutId() => {
         "nome": nome == null ? null : nome,
         "email": email == null ? null : email,

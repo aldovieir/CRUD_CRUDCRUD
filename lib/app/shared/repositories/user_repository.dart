@@ -55,13 +55,11 @@ class UserRepository {
     try {
       await Dio().put(
         "https://crudcrud.com/api/${auth.hash}/usuarios/$id",
-        data: user.toJsonWithoutId(),
+        data: user.toJsonWithoutPass(),
       );
-      getUsers();
       return true;
     } catch (e) {
       print(e);
-      getUsers();
       return false;
     }
   }

@@ -181,8 +181,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                               borderRadius: BorderRadius.circular(50.0),
                             ),
                             onPressed: () {
-                              controller.newPass();
-                              Modular.to.pop();
+                              controller.emailExist().then((exist) {
+                                if (exist) {
+                                  controller.newPass();
+                                  Modular.to.pop();
+                                  showToast("Senha Alterada com Sucesso!",
+                                      backgroundColor: Colors.red[600]);
+                                } else {
+                                  showToast("Email Não cadastrado!",
+                                      backgroundColor: Colors.red[600]);
+                                }
+                              });
                             },
                             child: Text("Salvar"),
                           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:teste_proficiencia/app/modules/home/home_controller.dart';
 import 'package:teste_proficiencia/app/shared/user_moldel/user_model.dart';
 import 'edit_controller.dart';
 import 'package:teste_proficiencia/app/shared/widgets/renew_hash.dart';
@@ -22,7 +23,7 @@ class _EditPageState extends State<EditPage> {
   var userPass;
   var userConfirmPass;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  HomeController homeController = Modular.get();
   @override
   Widget build(BuildContext context) {
     controller.idController.text = widget.user.id ?? "";
@@ -30,6 +31,7 @@ class _EditPageState extends State<EditPage> {
     controller.nomeController.text = widget.user.nome ?? "";
     controller.dataController.text = widget.user.aniversario ?? "";
     controller.imageController.text = widget.user.imagem ?? "";
+    controller.senhaController.text = widget.user.senha;
 
     return Scaffold(
       appBar: AppBar(
@@ -128,6 +130,7 @@ class _EditPageState extends State<EditPage> {
                           }
                           return controller.editUser().then((isEditd) {
                             if (isEditd) {
+                              homeController.getUsers();
                               Modular.to.pop();
                               showToast("Usuário Atualizado com Sucesso!");
                             } else {

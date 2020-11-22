@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -31,8 +28,6 @@ abstract class _EditControllerBase with Store {
 
   @action
   Future<bool> editUser() async {
-    String md5senha = md5.convert(utf8.encode(senhaController.text)).toString();
-
     return userRepository.editUser(
         id: idController.text,
         user: UserModel(
@@ -40,7 +35,7 @@ abstract class _EditControllerBase with Store {
           aniversario: dataController.text,
           email: emailController.text,
           imagem: imageController.text,
-          senha: md5senha,
+          senha: senhaController.text,
         ));
   }
 }

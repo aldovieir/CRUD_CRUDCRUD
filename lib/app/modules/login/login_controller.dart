@@ -20,8 +20,8 @@ abstract class _LoginControllerBase with Store {
   @observable
   bool isLoading = false;
 
-  Future<bool> emailExist(String _email) {
-    return userRepository.emailExist(_email);
+  Future<bool> emailExist() {
+    return userRepository.emailExist(emailController.text);
   }
 
   Future<bool> loginWithEmail(String _email, String _senha) {
